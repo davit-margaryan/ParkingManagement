@@ -1,0 +1,21 @@
+
+version: '2'
+
+services:
+  app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    container_name: app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=davit
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - "5432:5432"
